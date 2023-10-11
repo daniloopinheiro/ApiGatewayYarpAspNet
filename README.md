@@ -1,4 +1,4 @@
-![image 13](https://github.com/daniloopinheiro/AspNetv6YarpMicrosServices/assets/64677271/2dd41cb2-eb91-4ed6-b73b-83e87531add7)
+![Frame 298](https://github.com/daniloopinheiro/AspNetv6YarpMicrosServices/assets/64677271/889e8353-3b6c-4df0-84bf-34d0a4ec4ded)
 
 # Asp.Net v6 [Yarp](https://www.nuget.org/packages/Yarp.ReverseProxy) MicrosServices
 local de construção, OS Linux (Ubuntu 20.04.6 LTS x86_64): sudo apt autoremove && sudo apt autoclean  && sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
@@ -6,7 +6,11 @@ local de construção, OS Linux (Ubuntu 20.04.6 LTS x86_64): sudo apt autoremove
 ### *"Olá caro dev do dotNet, nessa pequena demonstração, você vera neste repositório o código fonte que lhe mostrará, após a execução, o pacote YARP, realizando uma solicitação via o pacote, com uma das apis intermediando os serviços"*
 
 ## Processo de Criação
-*obs: tudo via terminal*
+*obs: instalar versão .net6*
+
+```shell
+$ dotnet new globaljson --sdk-version 6.x.x
+```
 
 ## Etapa 1: Criando duas APIs
 
@@ -23,14 +27,14 @@ Adicione os pacotes YARP NuGet aos dois projetos de APIs:
 
 > PrimeiroServico
 ```shell
-$ dotnet add package Microsoft.ReverseProxy --version 2.11.0
-$ dotnet add package Microsoft.ReverseProxy.Telemetry.Consumption --version 1.0.0
+$ dotnet add package Yarp.ReverseProxy --version 2.0.1
+$ dotnet add package Yarp.Telemetry.Consumption --version 2.0.1
 ```
 
 > SegundoServico
 ```shell
-$ dotnet add package Microsoft.ReverseProxy --version 2.11.0
-$ dotnet add package Microsoft.ReverseProxy.Telemetry.Consumption --version 1.0.0
+$ dotnet add package Yarp.ReverseProxy --version 2.0.1
+$ dotnet add package Yarp.Telemetry.Consumption --version 2.0.1
 ```
 
 ## Etapa 3: Configurar as APIs
@@ -39,25 +43,21 @@ Em cada arquivo Startup.cs do PrimeiroServico e SegundoServico, configure um end
 
 > // Dentro do método Configure em Startup.cs para PrimeiroServico
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapGet("/primeiro", async context =>
-    {
-        await context.Response.WriteAsync("User Service");
-    });
+app.UseRouting();
+app.MapControllers();
+
+app.MapGet("/primeiro", async context => {
+        await context.Response.WriteAsync("Primeiro Service");
 });
 ```
 
 > // Dentro do método Configure em Startup.cs para SegundoServico
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapGet("/segundo", async context =>
-    {
-        await context.Response.WriteAsync("User Service");
-    });
+app.UseRouting();
+app.MapControllers();
+
+app.MapGet("/segundo", async context => {
+        await context.Response.WriteAsync("Segundo Service");
 });
 ```
 
@@ -73,8 +73,8 @@ $ dotnet new webapi -o ApiGateway -f net6.0
 Adicione pacotes YARP NuGet ao projeto ApiGateway: 
 
 ```shell
-$ dotnet add package Microsoft.ReverseProxy --version 2.11.0
-$ dotnet add package Microsoft.ReverseProxy.Telemetry.Consumption --version 1.0.0
+$ dotnet add package Yarp.ReverseProxy --version 2.0.1
+$ dotnet add package Yarp.Telemetry.Consumption --version 2.0.1
 ```
 
 ## Etapa 6: Configurando o API Gateway
@@ -82,24 +82,41 @@ $ dotnet add package Microsoft.ReverseProxy.Telemetry.Consumption --version 1.0.
 Atualize o arquivo Startup.cs no projeto ApiGateway:
 
 ```csharp
-public class Startup
+var builder = WebApplication.CreateBuilder(args);
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddReverseProxy()
+  .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddReverseProxy()
-            .LoadFromConfig(Configuration.GetSection("ReverseProxy"));
-    }
-
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-        app.UseRouting();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapReverseProxy();
-        });
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapReverseProxy();
+});
+
+app.Run();
 
 ```
 
@@ -155,5 +172,8 @@ Acesse o gateway em https://localhost:5000 e teste as rotas configuradas, como h
 - [Doc template webapi MSFT](https://learn.microsoft.com/en-us/dotnet/core/tutorials/cli-templates-create-project-template)
 - [Doc add package MSFT](https://learn.microsoft.com/pt-br/dotnet/core/tools/dotnet-add-package)
 - [Doc reference MSFT](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference)
+
 - [Doc YARP](https://microsoft.github.io/reverse-proxy/index.html)
+- [Nuget - Yarp ReverseProxy](https://www.nuget.org/packages/Yarp.ReverseProxy)
+- [Nuget - Telemetry Consumption](https://www.nuget.org/packages/Yarp.Telemetry.Consumption)
 ---
