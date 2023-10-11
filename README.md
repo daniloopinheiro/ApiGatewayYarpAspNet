@@ -43,25 +43,21 @@ Em cada arquivo Startup.cs do PrimeiroServico e SegundoServico, configure um end
 
 > // Dentro do método Configure em Startup.cs para PrimeiroServico
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapGet("/primeiro", async context =>
-    {
-        await context.Response.WriteAsync("User Service");
-    });
+app.UseRouting();
+app.MapControllers();
+
+app.MapGet("/primeiro", async context => {
+        await context.Response.WriteAsync("Primeiro Service");
 });
 ```
 
 > // Dentro do método Configure em Startup.cs para SegundoServico
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapGet("/segundo", async context =>
-    {
-        await context.Response.WriteAsync("User Service");
-    });
+app.UseRouting();
+app.MapControllers();
+
+app.MapGet("/segundo", async context => {
+        await context.Response.WriteAsync("Segundo Service");
 });
 ```
 
