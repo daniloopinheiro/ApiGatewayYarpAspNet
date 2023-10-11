@@ -6,7 +6,11 @@ local de construção, OS Linux (Ubuntu 20.04.6 LTS x86_64): sudo apt autoremove
 ### *"Olá caro dev do dotNet, nessa pequena demonstração, você vera neste repositório o código fonte que lhe mostrará, após a execução, o pacote YARP, realizando uma solicitação via o pacote, com uma das apis intermediando os serviços"*
 
 ## Processo de Criação
-*obs: tudo via terminal*
+*obs: instalar versão .net6*
+
+```shell
+$ dotnet new globaljson --sdk-version 6.x.x
+```
 
 ## Etapa 1: Criando duas APIs
 
