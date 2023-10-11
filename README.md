@@ -140,7 +140,13 @@ Criando um arquivo appsettings.json no projeto ApiGateway e configure o YARP:
 
 ## Etapa Final: Executando os serviços e o gateway
 
-Execute cada microsserviço (PrimeiroServico e SegundoServico) e o API Gateway (ApiGateway). Acesse o gateway em https://localhost:5000 e teste as rotas configuradas, como https://localhost:5000/primeiro e https://localhost:5000/segundo.
+Execute cada microsserviço (PrimeiroServico e SegundoServico) e o API Gateway (ApiGateway). 
+
+```csharp
+$ dotnet run
+```
+
+Acesse o gateway em https://localhost:5000 e teste as rotas configuradas, como https://localhost:5000/primeiro e https://localhost:5000/segundo.
 
 ---
 ### Referências
