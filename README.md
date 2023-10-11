@@ -1,4 +1,4 @@
-![image 13](https://github.com/daniloopinheiro/AspNetv6YarpMicrosServices/assets/64677271/2dd41cb2-eb91-4ed6-b73b-83e87531add7)
+![Frame 298](https://github.com/daniloopinheiro/AspNetv6YarpMicrosServices/assets/64677271/889e8353-3b6c-4df0-84bf-34d0a4ec4ded)
 
 # Asp.Net v6 [Yarp](https://www.nuget.org/packages/Yarp.ReverseProxy) MicrosServices
 local de construção, OS Linux (Ubuntu 20.04.6 LTS x86_64): sudo apt autoremove && sudo apt autoclean  && sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
