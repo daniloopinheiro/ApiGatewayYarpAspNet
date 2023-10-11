@@ -145,9 +145,9 @@ Execute cada microsserviço (PrimeiroServico e SegundoServico) e o API Gateway (
 ---
 ### Referências
 ---
+- [Código fonte](https://github.com/daniloopinheiro/AspNetv6YarpMicrosServices)
 - [Doc template webapi MSFT](https://learn.microsoft.com/en-us/dotnet/core/tutorials/cli-templates-create-project-template)
 - [Doc add package MSFT](https://learn.microsoft.com/pt-br/dotnet/core/tools/dotnet-add-package)
 - [Doc reference MSFT](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference)
 - [Doc YARP](https://microsoft.github.io/reverse-proxy/index.html)
-  
 ---
