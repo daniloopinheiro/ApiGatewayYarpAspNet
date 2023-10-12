@@ -162,7 +162,6 @@ Execute cada microsserviço (PrimeiroServico e SegundoServico) e o API Gateway (
 ```csharp
 $ dotnet run
 ```
-
 Acesse o gateway em https://localhost:5000 e teste as rotas configuradas, como https://localhost:5000/primeiro e https://localhost:5000/segundo.
 
 ---
