@@ -1,6 +1,6 @@
 namespace ApiGateway;
 
-public class WeatherForecast
+public class ApiGateway
 {
     public DateTime Date { get; set; }
 

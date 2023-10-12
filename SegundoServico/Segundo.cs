@@ -1,6 +1,6 @@
-namespace PrimeiroServico;
+namespace SegundoServico;
 
-public class WeatherForecast
+public class Segundo
 {
     public DateTime Date { get; set; }
 
