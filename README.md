@@ -166,8 +166,10 @@ $ dotnet run
 Acesse o gateway em https://localhost:5000 e teste as rotas configuradas, como https://localhost:5000/primeiro e https://localhost:5000/segundo.
 
 ---
-### Referências
----
+
+<details>
+    <summary>Referências</summary>
+        
 - [Código fonte](https://github.com/daniloopinheiro/AspNetv6YarpMicrosServices)
 - [Doc template webapi MSFT](https://learn.microsoft.com/en-us/dotnet/core/tutorials/cli-templates-create-project-template)
 - [Doc add package MSFT](https://learn.microsoft.com/pt-br/dotnet/core/tools/dotnet-add-package)
@@ -176,4 +178,7 @@ Acesse o gateway em https://localhost:5000 e teste as rotas configuradas, como h
 - [Doc YARP](https://microsoft.github.io/reverse-proxy/index.html)
 - [Nuget - Yarp ReverseProxy](https://www.nuget.org/packages/Yarp.ReverseProxy)
 - [Nuget - Telemetry Consumption](https://www.nuget.org/packages/Yarp.Telemetry.Consumption)
+
+</details>
+
 ---
