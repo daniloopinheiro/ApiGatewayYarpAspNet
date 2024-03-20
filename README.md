@@ -84,8 +84,6 @@ Atualize o arquivo Startup.cs no projeto ApiGateway:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 builder.Services.AddControllers();
